@@ -2,7 +2,7 @@
 STAMPDIR=tgz2build/stamps
 
 
-CONFIGURE_OPTS := --prefix=$(ZBS_PREFIX)
+CONFIGURE_OPTS := --prefix=$(ZBS_PREFIX) --without-libiconv-prefix --without-libintl-prefix
 
 #
 # NOTE: we deliberately skip environment supplied $LDFLAGS here, as
