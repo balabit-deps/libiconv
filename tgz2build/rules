@@ -44,7 +44,7 @@ $(STAMPDIR)/stamp-build: configure
 install: $(STAMPDIR)/stamp-install
 $(STAMPDIR)/stamp-install: build
 	rm -rf $(ZBS_STAGE_DIR) || true
-	cd lib && $(MAKE) install DESTDIR=$(ZBS_STAGE_DIR)
+	$(MAKE) install DESTDIR=$(ZBS_STAGE_DIR)
 	touch $@
 clean:
 	rm -rf tgz2build/stamps || true
