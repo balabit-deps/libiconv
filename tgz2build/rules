@@ -2,12 +2,23 @@
 STAMPDIR=tgz2build/stamps
 
 
-CONFIGURE_CMD = ./configure $(CONFIGURE_OPTS)
+CONFIGURE_OPTS := --prefix=$(ZBS_PREFIX)
+
+#
+# NOTE: we deliberately skip environment supplied $LDFLAGS here, as
+# libiconv is broken in a sense that it uses $LDFLAGS _before_ its local
+# library paths, thus it would get linked to
+# /opt/syslog-ng/lib/libiconv.so instead of the one just compiled.
+# 
+# Since libiconv does not have a dependency outside libc, we are safe to
+# remove any -L paths coming from the outside.
+#
+
+CONFIGURE_CMD = LDFLAGS="" ./configure $(CONFIGURE_OPTS)
 ifneq (,$(findstring aix,$(ZBS_DIST)))
-CONFIGURE_CMD = LDFLAGS="-Wl,-brtl" ./configure $(CONFIGURE_OPTS)
+  CONFIGURE_CMD = LDFLAGS="-Wl,-brtl" ./configure $(CONFIGURE_OPTS)
 endif
 
-CONFIGURE_OPTS := --prefix=$(ZBS_PREFIX)
 
 all: binary
 
