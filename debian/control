@@ -18,3 +18,17 @@ Architecture: any
 Description: dev files
  Dummy packaging.
 
+Package: libiconv-dbg
+Section: libs
+Priority: important
+Architecture: any
+Description: shared libraries. debug.
+ Dummy packaging.
+
+Package: libiconv-dev-dbg
+Section: libdevel
+Priority: optional
+Architecture: any
+Description: dev debug files
+ Dummy packaging.
+
