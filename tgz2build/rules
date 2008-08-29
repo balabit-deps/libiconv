@@ -1,6 +1,12 @@
 #!/usr/local/bin/make -f                                                                                                                                           
 STAMPDIR=tgz2build/stamps
 
+
+CONFIGURE_CMD = ./configure $(CONFIGURE_OPTS)
+ifneq (,$(findstring aix,$(ZBS_DIST)))
+CONFIGURE_CMD = LDFLAGS="-Wl,-brtl" ./configure $(CONFIGURE_OPTS)
+endif
+
 CONFIGURE_OPTS := --prefix=$(ZBS_PREFIX)
 
 all: binary
@@ -13,7 +19,7 @@ $(STAMPDIR)/stamp-setup:
 	touch $@
 
 configure: $(STAMPDIR)/stamp-configure
-	./configure $(CONFIGURE_OPTS)
+	$(CONFIGURE_CMD)
 	touch $@
 
 $(STAMPDIR)/stamp-configure: setup
@@ -21,12 +27,13 @@ $(STAMPDIR)/stamp-configure: setup
 build:  $(STAMPDIR)/stamp-build
 $(STAMPDIR)/stamp-build: configure
 	$(MAKE)
+
 	touch $@
 
 install: $(STAMPDIR)/stamp-install
 $(STAMPDIR)/stamp-install: build
 	rm -rf $(ZBS_STAGE_DIR) || true
-	make install DESTDIR=$(ZBS_STAGE_DIR)
+	cd lib && $(MAKE) install DESTDIR=$(ZBS_STAGE_DIR)
 	touch $@
 clean:
 	rm -rf tgz2build/stamps || true
