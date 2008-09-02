@@ -127,12 +127,12 @@ install : all force
 	if [ ! -d $(DESTDIR)$(libdir) ] ; then $(mkinstalldirs) $(DESTDIR)$(libdir) ; fi
 	$(LIBTOOL_INSTALL) $(INSTALL_DATA) libiconv.la $(DESTDIR)$(libdir)/libiconv.la
 	case "@host_os@" in \
-	  aix*) if test -f libiconv.a; then (cd $(DESTDIR)$(libdir) && \
-	         objects=`ar t libiconv.a`" "`ar t /lib/libiconv.a` && \
-	         ar x libiconv.a && ar x /lib/libiconv.a && \
-	         ar q libiconv.new.a $$objects && \
+	  aix*) if test -f $(DESTDIR)$(libdir)/libiconv.a; then (cd $(DESTDIR)$(libdir) && \
+	         objects=`/usr/bin/ar t libiconv.a`" "`/usr/bin/ar t /lib/libiconv.a` && \
+	         /usr/bin/ar x libiconv.a && /usr/bin/ar x /lib/libiconv.a && \
+	         /usr/bin/ar -X32_64 q libiconv.new.a $$objects && \
 	         rm -f $$objects && \
-	         mv -f libiconv.new.a libiconv.a); fi ;; \
+	         mv -f libiconv.new.a libiconv.a); echo AIX hack done!; fi ;; \
 	esac
 	if test -n "@PLUGLIB@"; then $(INSTALL_DATA) @PLUGLIB@ $(DESTDIR)$(libdir)/@PLUGLIB@.new && mv $(DESTDIR)$(libdir)/@PLUGLIB@.new $(DESTDIR)$(libdir)/@PLUGLIB@ ; fi
 

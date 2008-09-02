@@ -16,7 +16,7 @@ CONFIGURE_OPTS := --prefix=$(ZBS_PREFIX) --without-libiconv-prefix --without-lib
 
 CONFIGURE_CMD = LDFLAGS="" ./configure $(CONFIGURE_OPTS)
 ifneq (,$(findstring aix,$(ZBS_DIST)))
-  CONFIGURE_CMD = LDFLAGS="-Wl,-brtl" ./configure $(CONFIGURE_OPTS)
+  CONFIGURE_CMD = LDFLAGS="-Wl,-brtl" ./configure $(CONFIGURE_OPTS) --enable-static
 endif
 
 
