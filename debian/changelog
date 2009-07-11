@@ -1,3 +1,11 @@
+libiconv (1.12-3syslogng30) syslogng30; urgency=low
+
+  * Added balabit-builder files
+  * Fixed tgz2build to remove /usr/local/lib library search path during
+    compilation.
+
+ -- ZorpOS Maintainers <zorpos@balabit.com>  Sat, 11 Jul 2009 12:28:00 +0200
+
 libiconv (1.12-2syslogng30) syslogng30; urgency=low
 
   * Added debug packages.
