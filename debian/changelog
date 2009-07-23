@@ -1,3 +1,9 @@
+libiconv (1.12-4syslogng30) syslogng30; urgency=low
+
+  * Added charset.alias file to libiconv package.
+
+ -- Balazs Scheidler <bazsi@balabit.com>  Thu, 23 Jul 2009 19:42:33 +0200
+
 libiconv (1.12-3syslogng30) syslogng30; urgency=low
 
   * Added balabit-builder files
