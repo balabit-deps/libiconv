@@ -1,13 +1,12 @@
-#!/bin/sh
+#!/bin/sh -e
 
 cmd=$1
 shift
 case "$cmd" in
-  build-exclude-list|dist-exclude-list)
+  build-exclude-list|dist-exclude-list|prepare-dist)
     ;;
   bootstrap)
     echo "No need to bootstrap"
-
     ;;
   configure|make)
     echo "ZWA local compilation not supported, please use the system supplied libiconv"
