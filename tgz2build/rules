@@ -35,7 +35,7 @@ $(STAMPDIR)/stamp-configure: $(STAMPDIR)/stamp-setup
 	$(CONFIGURE_CMD)
 	# remove /usr/local/lib from local lib search path
 	for file in `find . -name libtool`; do \
-		sed -e '/^sys_lib_search_path_spec=/ s,/usr/local/lib[^/],,g' $$file > $$file.T && mv $$file.T $$file; \
+		sed -e '/^sys_lib_search_path_spec=/ s,/usr/local/lib[^/\"],,g' $$file > $$file.T && mv $$file.T $$file; \
 	done
 	touch $@
 
