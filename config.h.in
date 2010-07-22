@@ -261,6 +261,10 @@
 /* Define to the value of ${prefix}, as a string. */
 #undef INSTALLPREFIX
 
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#undef LT_OBJDIR
+
 /* If malloc(0) is != NULL, define this to 1. Otherwise define this to 0. */
 #undef MALLOC_0_IS_NONNULL
 
@@ -332,11 +336,6 @@
 
 /* Define if the machine's byte ordering is little endian. */
 #undef WORDS_LITTLEENDIAN
-
-/* Enable GNU extensions on systems that have them.  */
-#ifndef _GNU_SOURCE
-# undef _GNU_SOURCE
-#endif
 
 /* Define to 1 if on MINIX. */
 #undef _MINIX
