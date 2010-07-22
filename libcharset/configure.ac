@@ -27,6 +27,7 @@ AC_CONFIG_HEADER(config.h)
 AC_PROG_MAKE_SET
 AC_SUBST(PACKAGE)
 AC_SUBST(VERSION)
+AC_CONFIG_MACRO_DIR([m4])
 
 dnl           checks for basic programs
 

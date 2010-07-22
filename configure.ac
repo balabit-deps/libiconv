@@ -23,6 +23,7 @@ AC_CONFIG_AUX_DIR(build-aux)
 AM_INIT_AUTOMAKE(libiconv, 1.12)
 AC_CONFIG_HEADERS(config.h lib/config.h)
 AC_PROG_MAKE_SET
+AC_CONFIG_MACRO_DIR([m4])
 
 dnl           checks for basic programs
 
@@ -74,7 +75,6 @@ AC_EXEEXT
 dnl           check for build configuration
 
 AC_DISABLE_STATIC
-AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 gl_VISIBILITY
 AM_ICONV
