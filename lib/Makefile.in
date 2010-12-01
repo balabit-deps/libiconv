@@ -81,11 +81,13 @@ preloadable_libiconv_linux.so : $(SOURCES)
 	fi
 
 preloadable_libiconv_solaris.so : $(SOURCES)
+ifeq (,$(findstring sparc64,$(ZBS_ARCH)))
 	if test -n "@GCC@"; then \
 	  $(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(INCLUDES) $(CFLAGS) $(CPPFLAGS) $(DEFS) -fPIC -DPIC -DLIBICONV_PLUG $(SOURCES) -shared -o preloadable_libiconv_solaris.so; \
 	else \
 	  $(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(INCLUDES) $(CFLAGS) $(CPPFLAGS) $(DEFS) -KPIC -DPIC -DLIBICONV_PLUG $(SOURCES) -G -o preloadable_libiconv_solaris.so; \
 	fi
+endif
 
 preloadable_libiconv_osf.so : $(SOURCES)
 	if test -n "@GCC@"; then \
@@ -134,7 +136,7 @@ install : all force
 	         rm -f $$objects && \
 	         mv -f libiconv.new.a libiconv.a); echo AIX hack done!; fi ;; \
 	esac
-	if test -n "@PLUGLIB@"; then $(INSTALL_DATA) @PLUGLIB@ $(DESTDIR)$(libdir)/@PLUGLIB@.new && mv $(DESTDIR)$(libdir)/@PLUGLIB@.new $(DESTDIR)$(libdir)/@PLUGLIB@ ; fi
+	if test -f "@PLUGLIB@"; then $(INSTALL_DATA) @PLUGLIB@ $(DESTDIR)$(libdir)/@PLUGLIB@.new && mv $(DESTDIR)$(libdir)/@PLUGLIB@.new $(DESTDIR)$(libdir)/@PLUGLIB@ ; fi
 
 installdirs : force
 	if [ ! -d $(DESTDIR)$(libdir) ] ; then $(mkinstalldirs) $(DESTDIR)$(libdir) ; fi
