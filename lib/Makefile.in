@@ -64,7 +64,7 @@ OBJECTS_EXP_no =
 OBJECTS_RES_yes = libiconv.res
 OBJECTS_RES_no =
 
-all : @PLUGLIB@ libiconv.la
+all : libiconv.la
 
 libiconv.la : $(OBJECTS)
 	$(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) -o libiconv.la -rpath $(libdir) -version-info $(LIBICONV_VERSION_INFO) -no-undefined $(OBJECTS)

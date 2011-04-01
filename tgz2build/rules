@@ -2,7 +2,7 @@
 STAMPDIR=tgz2build/stamps
 
 
-CONFIGURE_OPTS := --prefix=$(ZBS_PREFIX) --without-libiconv-prefix --without-libintl-prefix
+CONFIGURE_OPTS := --prefix=$(ZBS_PREFIX) --without-libiconv-prefix --without-libintl-prefix --disable-relocatable
 
 #
 # NOTE: we deliberately skip environment supplied $LDFLAGS here, as
@@ -16,9 +16,9 @@ CONFIGURE_OPTS := --prefix=$(ZBS_PREFIX) --without-libiconv-prefix --without-lib
 
 CONFIGURE_CMD = LDFLAGS="" ./configure $(CONFIGURE_OPTS)
 ifneq (,$(findstring aix,$(ZBS_DIST)))
-  CONFIGURE_CMD = LDFLAGS="-Wl,-brtl" ./configure $(CONFIGURE_OPTS) --enable-static
+  LDFLAGS=-Wl,-G,-bnolibpath,-blibpath:/opt/syslog-ng/lib:/usr/lib:/lib,-brtl,-bsymbolic,-bso,-bnoexpall,-bexpfull,-bnoquiet
+  CONFIGURE_CMD = LDFLAGS=$(LDFLAGS) ./configure $(CONFIGURE_OPTS) --disable-static
 endif
-
 
 all: binary
 
