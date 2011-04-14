@@ -1,3 +1,10 @@
+libiconv (1.12-4.syslogng41.1) syslogngdeps30; urgency=low
+
+  * re-release for syslog-ng-deps-3.0
+  * multiple packaging fixes.
+
+ -- Tamas Pal <folti@balabit.com>  Thu, 14 Apr 2011 18:15:44 +0200
+
 libiconv (1.12-4syslogng30) syslogng30; urgency=low
 
   * Added charset.alias file to libiconv package.
