@@ -20,6 +20,10 @@ ifneq (,$(findstring aix,$(ZBS_DIST)))
   CONFIGURE_CMD = LDFLAGS=$(LDFLAGS) ./configure $(CONFIGURE_OPTS) --disable-static
 endif
 
+ifneq (,$(findstring solaris,$(ZBS_DIST)))
+  LDFLAGS = -Wl,-R/opt/syslog-ng/lib
+  CONFIGURE_CMD = LDFLAGS=$(LDFLAGS) ./configure $(CONFIGURE_OPTS)
+endif
 all: binary
 
 binary: setup configure build install
