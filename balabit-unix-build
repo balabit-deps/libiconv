@@ -1,5 +1,9 @@
 #!/bin/sh -e
 
+UNAME_S=`uname -s`
+if [ -z "$MAKE" ]; then
+	MAKE=make
+fi
 cmd=$1
 shift
 case "$cmd" in
@@ -7,10 +11,28 @@ case "$cmd" in
     ;;
   bootstrap)
     echo "No need to bootstrap"
+
     ;;
-  configure|make)
-    echo "ZWA local compilation not supported, please use the system supplied libiconv"
-    exit 0
+  configure)
+    if [ "`uname -s`" != "Darwin" ]; then
+      echo "ZWA local compilation not needed on this platform, using the system's libiconv."
+      exit 0
+    else
+      OPTS="--with-included-gettext --disable-csharp --disable-rpath --disable-libasprintf --disable-static"
+      if [ "$UNAME_S" = "i386" ]; then
+        CFLAGS="$CFLAGS -arch i386"
+        LDFLAGS="$LDFLAGS -arch i386"
+        export LDFLAGS CFLAGS
+      fi
+    fi
+      ./configure $@ $OPTS
+    ;;
+  make)
+    if [ "$UNAME_S" != "Darwin" ]; then
+      echo "ZWA local compilation not needed on this platform, using the system's libiconv."
+      exit 0
+    fi
+    $MAKE $@
     ;;
   *)
     echo "Unknown command: $cmd"
@@ -18,3 +40,5 @@ case "$cmd" in
     ;;
 esac
 exit 0
+
+#vim: ts=2 sw=2 expandtab
