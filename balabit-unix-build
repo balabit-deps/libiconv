@@ -19,11 +19,6 @@ case "$cmd" in
       exit 0
     else
       OPTS="--with-included-gettext --disable-csharp --disable-rpath --disable-libasprintf --disable-static"
-      if [ "$UNAME_S" = "i386" ]; then
-        CFLAGS="$CFLAGS -arch i386"
-        LDFLAGS="$LDFLAGS -arch i386"
-        export LDFLAGS CFLAGS
-      fi
     fi
       ./configure $@ $OPTS
     ;;
