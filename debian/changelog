@@ -1,3 +1,9 @@
+libiconv (1.12-4.syslogng50.1) syslogngdeps50; urgency=low
+
+  * Mingw package for syslog-ng 5.0 windows edition
+
+ -- Tamas Pal <folti@balabit.com>  Fri, 11 May 2012 10:14:06 +0200
+
 libiconv (1.12-4.syslogng41.1) syslogngdeps30; urgency=low
 
   * re-release for syslog-ng-deps-3.0
