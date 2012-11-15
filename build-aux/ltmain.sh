@@ -2986,7 +2986,7 @@ func_to_host_path ()
           *mingw* ) # actually, msys
             # awkward: cmd appends spaces to result
             lt_sed_strip_trailing_spaces="s/[ ]*\$//"
-            func_to_host_path_tmp1=`( cmd //c echo "$1" |\
+            func_to_host_path_tmp1=`(  echo "$1" |\
               $SED -e "$lt_sed_strip_trailing_spaces" ) 2>/dev/null || echo ""`
             func_to_host_path_result=`echo "$func_to_host_path_tmp1" |\
               $SED -e "$lt_sed_naive_backslashify"`
@@ -3065,7 +3065,7 @@ func_to_host_pathlist ()
           *mingw* ) # Actually, msys.
             # Awkward: cmd appends spaces to result.
             lt_sed_strip_trailing_spaces="s/[ ]*\$//"
-            func_to_host_pathlist_tmp2=`( cmd //c echo "$func_to_host_pathlist_tmp1" |\
+            func_to_host_pathlist_tmp2=`(  echo "$func_to_host_pathlist_tmp1" |\
               $SED -e "$lt_sed_strip_trailing_spaces" ) 2>/dev/null || echo ""`
             func_to_host_pathlist_result=`echo "$func_to_host_pathlist_tmp2" |\
               $SED -e "$lt_sed_naive_backslashify"`
