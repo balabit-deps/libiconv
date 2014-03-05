@@ -1,3 +1,9 @@
+libiconv (1.12-4.syslogng51.2) syslogngdeps51; urgency=low
+
+  * no need to msvc-compat-dev package
+
+ -- jviktor <jviktor@balabit.com>  Wed, 05 Mar 2014 11:30:33 +0100
+
 libiconv (1.12-4.syslogng51.1) syslogngdeps51; urgency=low
 
   * release for syslog-ng-5.1
