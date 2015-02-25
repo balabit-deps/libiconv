@@ -1,3 +1,9 @@
+libiconv (1.12-4.syslogng53.3) syslogng53; urgency=medium
+
+  * freebsd 10.1 corrections
+
+ -- jviktor <jviktor@balabit.com>  Wed, 25 Feb 2015 16:18:32 +0100
+
 libiconv (1.12-4.syslogng53.2) syslogng53; urgency=medium
 
   * release for syslog-ng-5.3.2
