@@ -1,2 +1,5 @@
 *~
 autom4te.cache
+sbuild.py
+sbuild/*
+!sbuild/config.yml
