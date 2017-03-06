@@ -17,12 +17,19 @@ CONFIGURE_OPTS := --prefix=$(ZBS_PREFIX) --without-libiconv-prefix --without-lib
 CONFIGURE_CMD = LDFLAGS="" ./configure $(CONFIGURE_OPTS)
 ifneq (,$(findstring aix,$(ZBS_DIST)))
   LDFLAGS=-Wl,-G,-bnolibpath,-blibpath:/opt/syslog-ng/lib:/usr/lib:/lib,-brtl,-bsymbolic,-bso,-bnoexpall,-bexpfull,-bnoquiet
-  CONFIGURE_CMD = LDFLAGS=$(LDFLAGS) ./configure $(CONFIGURE_OPTS) --disable-static
+  CPPFLAGS = -D_THREAD_SAFE
+  CONFIGURE_CMD = CPPFLAGS=$(CPPFLAGS) LDFLAGS=$(LDFLAGS) ./configure $(CONFIGURE_OPTS) --disable-static
+endif
+
+ifneq (,$(findstring hpux,$(ZBS_DIST)))
+  CPPFLAGS = -D_REENTRANT
+  CONFIGURE_CMD = CPPFLAGS=$(CPPFLAGS) ./configure $(CONFIGURE_OPTS)
 endif
 
 ifneq (,$(findstring solaris,$(ZBS_DIST)))
   LDFLAGS = -Wl,-R/opt/syslog-ng/lib
-  CONFIGURE_CMD = LDFLAGS=$(LDFLAGS) ./configure $(CONFIGURE_OPTS)
+  CPPFLAGS = -D_REENTRANT
+  CONFIGURE_CMD = CPPFLAGS=$(CPPFLAGS) LDFLAGS=$(LDFLAGS) ./configure $(CONFIGURE_OPTS)
 endif
 all: binary
 
