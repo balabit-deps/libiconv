@@ -1,3 +1,9 @@
+libiconv (1.12-4.syslogng60.1) syslogng60; urgency=medium
+
+  * Added thread-safe errno support for Unix systems
+
+ -- Laszlo Varady <laszlo.varady@balabit.com>  Wed, 05 Apr 2017 15:11:49 +0200
+
 libiconv (1.12-4.syslogng53.3) syslogng53; urgency=medium
 
   * freebsd 10.1 corrections
