@@ -1,0 +1,4 @@
+opt/syslog-ng/lib/*.dylib
+opt/syslog-ng/lib/*.s[o,l]*
+opt/syslog-ng/lib/*.a
+opt/syslog-ng/lib/charset.alias
