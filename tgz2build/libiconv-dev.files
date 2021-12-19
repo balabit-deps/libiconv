@@ -1,4 +1,0 @@
-opt/syslog-ng/lib/*.dylib
-opt/syslog-ng/lib/*.s[o,l]
-opt/syslog-ng/lib/*.la
-opt/syslog-ng/include
