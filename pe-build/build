@@ -1,0 +1,12 @@
+source="libiconv"
+version=v1.12-pe-1
+
+build() {
+  cd "${build_dir}"
+  ${src_dir}/configure --prefix="${prefix}" --without-libiconv-prefix --without-libintl-prefix --disable-relocatable
+  make
+}
+
+install() {
+  make -C "${build_dir}" DESTDIR="${dest_dir}" install
+}
